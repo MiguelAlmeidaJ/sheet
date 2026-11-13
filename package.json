@@ -1,0 +1,17 @@
+{
+  "name": "sheet",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.15.9",
+  "scripts": {
+    "dev": "pnpm --parallel --filter @sheet/web --filter @sheet/api dev",
+    "build": "pnpm --filter @sheet/database db:generate && pnpm --filter @sheet/api build && pnpm --filter @sheet/web build",
+    "typecheck": "pnpm -r typecheck",
+    "db:generate": "pnpm --filter @sheet/database db:generate",
+    "db:migrate": "pnpm --filter @sheet/database db:migrate",
+    "db:studio": "pnpm --filter @sheet/database db:studio"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}

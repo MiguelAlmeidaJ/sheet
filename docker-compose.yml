@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: sheet
+      POSTGRES_USER: sheet
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-sheet_dev_password}
+    ports:
+      - '127.0.0.1:5432:5432'
+    volumes:
+      - sheet_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U sheet -d sheet']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+volumes:
+  sheet_postgres:
